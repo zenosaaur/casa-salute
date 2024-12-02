@@ -1,0 +1,25 @@
+@startuml
+package "PrelieviMedicazioni" {
+class PrelieviMedicazioniRepository {
+    - db_session
+    - valid_times: List<String>
+    + getPrelieviMedicazioni(): (dict, int)
+    + getPrelieviMedicazioniByInfermiere(id_infermiere: String): (dict, int)
+    + getPrelieviMedicazioniByInfermiereData(id_infermiere: String, data: String): (dict, int)
+    + getAvailableTimesOnDateAndTipoSala(data: String, id_tiposala: String): (List<String>, int)
+    + getPrelieviMedicazioniByData(data: String): (dict, int)
+    + getPrelievoMedicazioneById(id_prelievimedicazioni: String): (List<dict>, int)
+    + getPrelievoMedicazioneByUtente(id_utente: String): (List<dict>, int)
+    + createPrelievoMedicazione(): (dict, int)
+    + updatePrelievoMedicazione(id_prelievimedicazione: String): (dict, int)
+}
+
+class BaseRepository {
+        - db_session
+        + __init__(db_session)
+}
+}
+
+
+BaseRepository <|-- PrelieviMedicazioniRepository
+@enduml

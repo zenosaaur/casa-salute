@@ -1,0 +1,145 @@
+Utente
+-
+ID_Utente INT PRIMARY KEY
+Nome VARCHAR(50)
+Cognome VARCHAR(50)
+Email VARCHAR(20)
+Password VARCHAR(20)
+CodiceFiscale VARCHAR(20)
+Data TIMESTAMP
+LuogoNascita VARCHAR(30)
+
+
+UtenteMedico
+-
+ID_Utente_Medico INT PRIMARY KEY
+ID_Utente int FK > Utente.ID_Utente
+ID_Medico int FK > Medico.ID_Medico
+
+
+UtentePaziente
+-
+ID_Utente_Paziente INT PRIMARY KEY
+ID_Utente int FK > Utente.ID_Utente
+ID_Paziente int FK > Paziente.ID_Paziente
+
+
+UtenteResponsabile
+-
+ID_Utente_Responsabile INT PRIMARY KEY
+ID_Utente int FK > Utente.ID_Utente
+ID_Responsabile int FK > Responsabile.ID_Responsabile
+
+
+PazienteResponsabile
+-
+ID_Utente_Paziente INT PRIMARY KEY
+ID_Paziente int FK > Paziente.ID_Paziente
+ID_Responsabile int FK > Responsabile.ID_Responsabile
+
+
+Medico
+-
+ID_Medico INT PRIMARY KEY
+Specializzazione VARCHAR(20)
+
+
+MedicoSostituzione
+-
+ID_MedicoSostituzione INT PRIMARY KEY
+ID_Medico int FK > Medico.ID_Medico
+ID_MedicoSostituto int FK > Medico.ID_Medico
+
+
+Assenza
+-
+Id_Assenza INT PRIMARY KEY
+ID_Medico int FK > Medico.ID_Medico
+Data TIMESTAMP
+
+
+Infermiere
+-
+ID_Infermiere INT PRIMARY KEY
+
+
+ServizioSala
+-
+ID_ServizioSala INT PRIMARY KEY
+ID_Infermiere int FK > Infermiere.ID_Infermiere
+Data TIMESTAMP
+Sala int FK > TipoSala.ID_TipoSala
+
+
+UtenteInfermiere
+-
+ID_Utente_Infermiere INT PRIMARY KEY
+ID_Utente int FK > Utente.ID_Utente
+ID_Infermiere int FK > Infermiere.ID_Infermiere
+
+
+UtenteSegretaria
+-
+ID_Utente_Segretaria INT PRIMARY KEY
+ID_Utente int FK > Utente.ID_Utente
+ID_Segretaria int FK > Segretaria.ID_Segretaria
+
+
+Paziente
+-
+ID_Paziente INT PRIMARY KEY
+ID_Medico int FK > Medico.ID_Medico
+CodiceSanitario VARCHAR(20)
+
+
+Responsabile
+-
+ID_Responsabile INT PRIMARY KEY
+
+
+Visita
+-
+ID_Visita INT PRIMARY KEY
+ID_Paziente int FK > Paziente.ID_Paziente
+ID_Medico int FK > Medico.ID_Medico
+DataInizio TIMESTAMP
+DataFine TIMESTAMP
+Urgenza VARCHAR(20)
+Esito VARCHAR(50)
+Regime VARCHAR(30)
+ID_TipoVisita int FK > TipoVisita.ID_TipoVisita
+ID_TipoAmbulatorio int FK > TipoAmbulatorio.ID_TipoAmbulatorio
+
+
+PrelieviMedicazioni
+-
+ID_PrelieviMedicazioni INT PRIMARY KEY
+ID_Paziente int FK > Paziente.ID_Paziente
+ID_Infermiere int FK > Infermiere.ID_Infermiere
+DataInizio TIMESTAMP
+DataFine TIMESTAMP
+Esito VARCHAR(50)
+Note VARCHAR(30)
+
+
+TipoVisita
+-
+ID_TipoVisita INT PRIMARY KEY
+Tipo VARCHAR(30)
+
+
+TipoAmbulatorio
+-
+ID_TipoAmbulatorio INT PRIMARY KEY
+Tipo VARCHAR(30)
+
+
+TipoSala
+-
+ID_TipoSala INT PRIMARY KEY
+Tipo VARCHAR(30)
+
+
+Segretaria
+-
+ID_Segretaria INT PRIMARY KEY

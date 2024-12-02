@@ -1,0 +1,20 @@
+@startuml
+package "TipoVisita" {
+    class BaseRepository {
+        - db_session
+        + __init__(db_session)
+    }
+
+    class TipoVisitaRepository {
+        - db_session
+        + __init__(db_session)
+        + getTipiVisita(): (List<dict>, int)
+        + getTipoVisitaById(id_tipovisita: String): (dict, int)
+        + createTipoVisita(): (dict, int)
+        + updateTipoVisita(id_tipovisita: String): (dict, int)
+    }
+
+
+    BaseRepository <|-- TipoVisitaRepository
+}
+@enduml

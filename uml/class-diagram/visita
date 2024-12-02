@@ -1,0 +1,90 @@
+@startuml
+package "Visita" {
+
+   class BaseRepository {
+    - db_session
+    +__init__(db_session)
+}
+
+class AssenzaRepository {
+    - db_session
+    +__init__(db_session)
+    +getAssenze(): (List<dict>, int)
+    +getAssenzaById(id_assenza: String): (dict, int)
+    +getAssenzaByMedico(id_medico: String): (dict, int)
+    +getAssenzaByMedicoDate(id_medico: String, date: String): (dict, int)
+    +createAssenza(): (dict, int)
+    +updateAssenza(id_assenza: String): (dict, int)
+}
+
+class PazienteRepository {
+    -db_session
+    - MedicoSostituto: MedicoSostitutoRepository
+    +__init__(db_session)
+    +getPazienti(): (List<dict>, int)
+    +getPazientiByMedico(id_medico: String): (List<dict>, int)
+    +getMedicobyPaziente(id_paziente: String): (dict, int)
+    +getPazienteById(id_paziente: String): (dict, int)
+    +getPazienteByUtente(id_utente: String): (dict, int)
+    +createPazienteFromUtente(id_utente: String): (dict, int)
+    +createPaziente(): (dict, int)
+    +updatePaziente(id_paziente: String): (dict, int)
+}
+
+class MedicoSostitutoRepository {
+    -db_session
+    +__init__(db_session)
+    +getMediciSostituti(): (List<dict>, int)
+    +getMediciSostitutiByMedico(id_medico: String): (List<dict>, int)
+    +getMedicoByMedicoSostituto(id_medicosostituzione: String): (dict, int)
+    +getMediciSostitutiByMedicoAndData(): (List<dict>, int)
+    +getMedicoSostituto(): (dict, int)
+    +createMedicoSostituto(): (dict, int)
+    +updateMedicoSostituto(id_medicosostituzione: String): (dict, int)
+}
+
+class TipoAmbulatorioRepository {
+        - db_session
+        - MedicoSostituto: MedicoSostitutoRepository
+        + __init__(db_session)
+        + getTipiAmbulatorio(): (List<dict>, int)
+        + getTipoAmbulatorioById(id_tipoambulatorio: String): (dict, int)
+        + getTipoAmbulatorioByIdMedico(id_medico: String): (dict, int)
+        + createTipoAmbulatorio(): (dict, int)
+        + updateTipoAmbulatorio(id_tipoambulatorio: String): (dict, int)
+    }
+
+class VisitaRepository {
+    -Assenza: AssenzaRepository
+    -Paziente: PazienteRepository
+    -MedicoSostituto: MedicoSostitutoRepository
+    -TipoAmbulatorio: TipoAmbulatorioRepository
+    -valid_times: List[str]
+
+    +__init__(db_session)
+    +__filter_appointments_by_date(appointments, target_date)
+    +__getVisiteTimesByDataAndAmbulatorio(data, id_ambulatorio)
+    +getAvailableTimesOnDate(data)
+    +getAvailableTimesOnDateAndAmbulatorio(data, id_ambulatorio)
+    +getAvailableTimesOnDateAndMedico(data, id_medico)
+    +getVisite()
+    +getVisiteByMedicoSostituto(id_medico_sos, id_medico_base)
+    +getVisiteByMediciSostituti(id_medico)
+    +getVisiteByMedico(id_medico)
+    +getVisiteByMedicoPaziente(id_medico, id_paziente)
+    +getVisiteByUtente(id_utente)
+    +getVisiteByMedicoData(id_medico, data)
+    +getVisiteByMedicoPazienteData(id_medico, id_paziente, data)
+    +getVisitaById(id_visita)
+    +getVisiteByData(data)
+    +createVisita()
+}
+
+BaseRepository <|-- VisitaRepository
+AssenzaRepository --* VisitaRepository
+PazienteRepository --* VisitaRepository
+MedicoSostitutoRepository --* VisitaRepository
+TipoAmbulatorioRepository --* VisitaRepository
+
+}
+@enduml

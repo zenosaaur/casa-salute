@@ -1,0 +1,23 @@
+@startuml
+package "Responsabile" {
+
+    class BaseRepository {
+        - db_session
+        + __init__(db_session)
+    }
+
+    class ResponsabileRepository {
+        - db_session
+        + __init__(db_session)
+        + getResponsabili(): (List<dict>, int)
+        + getResponsabileByUtente(id_utente: String): (List<dict>, int)
+        + getResponsabileById(id_responsabile: String): (dict, int)
+        + createResponsabileFromUtente(id_utente: String): (dict, int)
+        + createResponsabile(): (dict, int)
+        + updateResponsabile(id_responsabile: String): (dict, int)
+    }
+
+    BaseRepository <|-- ResponsabileRepository
+
+}
+@enduml

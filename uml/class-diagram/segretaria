@@ -1,0 +1,21 @@
+@startuml
+package "Segretaria" {
+   
+    class BaseRepository {
+        - db_session
+        + __init__(db_session)
+    }
+
+    class SegretariaRepository {
+        - db_session
+        + __init__(db_session)
+        + getSegretaria(): (List<dict>, int)
+        + getSegretariaById(id_segretaria: String): (dict, int)
+        + createSegretariaFromUtente(id_utente: String): (dict, int)
+        + createSegretaria(): (dict, int)
+    }
+
+
+    BaseRepository <|-- SegretariaRepository
+}
+@enduml

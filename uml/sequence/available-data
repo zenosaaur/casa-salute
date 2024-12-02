@@ -1,0 +1,31 @@
+@startuml
+actor Paziente
+participant Frontend
+participant Visite_Routes
+participant Visite_Repository
+
+
+Paziente -> Frontend: Selezione Data
+activate Frontend
+Frontend -> Visite_Routes: fecthAvailableTimesOnDateAndMedico(id_medico,data)
+activate Visite_Routes
+Visite_Routes -> Visite_Repository: getAvailableTimesOnDateAndMedico(id_medico,data)
+activate Visite_Repository
+deactivate Visite_Routes
+Visite_Repository -> Visite_Repository: getVisiteTimesByDataAndAmbulatorio()
+alt Fetch riuscito
+    Visite_Repository -> Visite_Routes: Array di date
+    activate Visite_Routes
+    deactivate Visite_Repository
+    Visite_Routes -> Frontend: status 200 e dati
+    deactivate Visite_Routes
+    Frontend -> Paziente: display delle date disponibili
+else Errore
+    Visite_Repository -> Visite_Routes: Errore
+    activate Visite_Routes
+    Visite_Routes -> Frontend: status != 200
+    deactivate Visite_Routes
+    Frontend -> Paziente: Errore
+
+end
+@enduml

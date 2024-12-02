@@ -1,0 +1,21 @@
+@startuml
+package "Medico" {
+class BaseRepository {
+    - db_session
+    + __init__(db_session)
+}
+
+class AssenzaRepository {
+    - db_session
+    + __init__(db_session)
+    + getAssenze()
+    + getAssenzaById(id_assenza)
+    + getAssenzaByMedico(id_medico)
+    + getAssenzaByMedicoDate(id_medico, date)
+    + createAssenza()
+    + updateAssenza(id_assenza)
+}
+}
+
+BaseRepository <|-- AssenzaRepository
+@enduml

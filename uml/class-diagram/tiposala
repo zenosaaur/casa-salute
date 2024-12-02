@@ -1,0 +1,20 @@
+@startuml
+package "TipoSala" {
+    class BaseRepository {
+        - db_session
+        + __init__(db_session)
+    }
+
+    class TipoSalaRepository {
+        - db_session
+        + __init__(db_session)
+        + getTipiSala(): (List<dict>, int)
+        + getTipoSalaById(id_tiposala: String): (dict, int)
+        + createTipoSala(): (dict, int)
+        + updateTipoSala(id_tiposala: String): (dict, int)
+    }
+
+
+    BaseRepository <|-- TipoSalaRepository
+}
+@enduml

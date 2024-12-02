@@ -1,0 +1,37 @@
+@startuml
+actor Medico
+participant View
+participant Controller
+participant Model
+
+
+
+
+View -> Controller: fetchVisiesByDoctor(id_medico)
+Controller -> Model: getVisitiesByDoctor(id_medico)
+alt Fetch riuscito
+    Model -> Medico: Conferma
+else Errore
+    Model -> Medico: Segnala Errore
+end
+Medico -> View: Seleziona data
+View -> Controller: fetchVisitesByDoctorDate(id_medico, date)
+Controller -> Model: getVisiteByDoctorData(id_medico,data)
+alt Fetch riuscito
+    Model -> Medico: Visulizzazione visite
+else Errore
+    Model -> Medico: Segnala Errore
+end
+
+Medico -> View: Selezione visita
+View -> Medico: Form di modifica
+
+Medico -> View: Salva Form
+View -> Controller: UpdateVisita(visita)
+Controller -> Model: update(id_visita)
+alt Aggiornamento Riuscito
+    Model -> Medico: Pop-up di conferma
+else Errore
+    Model -> Medico: Pop-up di errore
+end
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+left to right direction
+actor Medico as Doctor
+
+rectangle CasaSalute {
+    usecase "Autenticazione" as UC_Authentication
+    usecase "Inserimento Esito della Visita" as UC_EnterVisitData
+    usecase "Notifica Esito Visita" as UC_NotifyVisitResult
+    usecase "Visionare visite in programma" as UC_ShowVisite
+    usecase "Visionare dati pazienti" as UC_ShowPazienti
+    
+
+}
+
+Doctor --> UC_Authentication 
+Doctor --> UC_EnterVisitData
+Doctor --> UC_NotifyVisitResult
+Doctor --> UC_ShowVisite
+Doctor --> UC_ShowPazienti
+@enduml

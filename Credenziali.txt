@@ -1,0 +1,20 @@
+MEDICO
+- pat@gmail.com
+- riccardo@gmail.com
+- gian@gmail.com
+- ianez@gmail.com
+
+SEGRETARIA
+- eccher@gmail.com
+
+PAZIENTE
+- stefano2002betti@gmail.com
+- davidezeni02@gmail.com
+- < 14 (Daniel Junior)
+
+INFERMIERE
+- david@gmail.com
+- fonta@gmail.com
+
+RESPONSABILE
+- pise@gmail.com	

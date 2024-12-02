@@ -1,0 +1,21 @@
+@startuml
+package "Infermiere" {
+    class BaseRepository {
+        - db_session
+        + __init__(db_session)
+    }
+
+    class InfermiereRepository {
+        - db_session
+        + __init__(db_session)
+        + getInfermieri()
+        + getInfermiereById(id_infermiere)
+        + getInfermiereByUtente(id_utente)
+        + createInfermiereFromUtente(id_utente)
+        + createInfermiere()
+    }
+
+}
+
+BaseRepository <|-- InfermiereRepository
+@enduml

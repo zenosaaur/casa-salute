@@ -1,0 +1,22 @@
+@startuml
+package "ServizioSala" {
+   
+    class BaseRepository {
+        - db_session
+        + __init__(db_session)
+    }
+
+    class ServizioSalaRepository {
+        - db_session
+        + __init__(db_session)
+        + getServiziSala(): (List<dict>, int)
+        + getServizioSalaByInfermiere(id_infermiere: String): (List<dict>, int)
+        + getServizioSalaById(id_serviziosala: String): (dict, int)
+        + createServizioSala(): (dict, int)
+        + updateServizioSala(id_serviziosala: String): (dict, int)
+    }
+
+    BaseRepository <|-- ServizioSalaRepository
+
+}
+@enduml

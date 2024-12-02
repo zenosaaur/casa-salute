@@ -1,0 +1,40 @@
+@startuml
+package "Paziente" {
+    class BaseRepository {
+        - db_session
+        + __init__(db_session)
+    }
+
+    class MedicoSostitutoRepository {
+        - db_session: Session
+        + __init__(db_session: Session)
+        + getMediciSostituti(): tuple
+        + getMediciSostitutiByMedico(id_medico: str): tuple
+        + getMedicoByMedicoSostituto(id_medicosostituto: str): tuple
+        + getMediciSostitutiByMedicoAndData(): tuple
+        + getMedicoSostituto(id_medicosostituzione: str): tuple
+        + createMedicoSostituto(): dict
+        + updateMedicoSostituto(id_medicosostituzione: str): dict
+    }
+
+
+    class PazienteRepository {
+        - db_session: <db_session_type>
+        - MedicoSostituto: MedicoSostitutoRepository
+        
+        + __init__(db_session)
+        + getPazienti(): (pazienti_data: list, status_code: int) | jwt_required()
+        + getPazientiByMedico(id_medico: str): (pazienti_data: list, status_code: int) | jwt_required()
+        + getMedicobyPaziente(id_paziente: str): (medico_dict: dict, status_code: int) | jwt_required()
+        + getPazienteById(id_paziente: str): (paziente_dict: dict, status_code: int) | jwt_required()
+        + getPazienteByUtente(id_utente: str): (paziente_dict: dict, status_code: int) | jwt_required()
+        + createPazienteFromUtente(id_utente: str): (result: dict, status_code: int) | jwt_required()
+        + createPaziente(): (result: dict, status_code: int) | jwt_required()
+        + updatePaziente(id_paziente: str): (result: dict, status_code: int) | jwt_required()
+    }
+}
+
+
+BaseRepository <|-- PazienteRepository
+PazienteRepository --* MedicoSostitutoRepository
+@enduml

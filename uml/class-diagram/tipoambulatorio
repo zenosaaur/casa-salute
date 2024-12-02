@@ -1,0 +1,38 @@
+@startuml
+package "TipoAmbulatorio" {
+
+    class MedicoSostitutoRepository {
+        - db_session
+        + __init__(db_session)
+        + getMediciSostituti(): (List<dict>, int)
+        + getMediciSostitutiByMedico(id_medico: String): (List<dict>, int)
+        + getMedicoByMedicoSostituto(id_medico: String): (dict, int)
+        + getMediciSostitutiByMedicoAndData(): (List<dict>, int)
+        + getMedicoSostituto(id_medicosostituzione: String): (dict, int)
+        + createMedicoSostituto(): (dict, int)
+        + updateMedicoSostituto(id_medicosostituzione: String): (dict, int)
+    }
+
+    class BaseRepository {
+        - db_session
+        + __init__(db_session)
+    }
+
+    class TipoAmbulatorioRepository {
+        - db_session
+        - MedicoSostituto: MedicoSostitutoRepository
+        + __init__(db_session)
+        + getTipiAmbulatorio(): (List<dict>, int)
+        + getTipoAmbulatorioById(id_tipoambulatorio: String): (dict, int)
+        + getTipoAmbulatorioByIdMedico(id_medico: String): (dict, int)
+        + createTipoAmbulatorio(): (dict, int)
+        + updateTipoAmbulatorio(id_tipoambulatorio: String): (dict, int)
+    }
+
+
+    BaseRepository <|-- TipoAmbulatorioRepository
+    BaseRepository <|-- MedicoSostitutoRepository
+    TipoAmbulatorioRepository *-- MedicoSostitutoRepository
+
+}
+@enduml

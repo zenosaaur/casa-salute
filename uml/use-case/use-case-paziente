@@ -1,0 +1,18 @@
+@startuml
+left to right direction
+actor Paziente as Patient
+
+rectangle CasaSalute {
+    usecase "Autenticazione" as UC_Authentication
+    usecase "Prenotazione Visita" as UC_BookAppointment
+    usecase "Visualizzazione Esito Visita" as UC_ViewVisitResult
+    usecase "Storico Visite" as UC_VisitHistory
+    usecase "Prenotazione Prelievi/Medicazioni" as UC_BookTestsTreatments
+}
+
+Patient --> UC_Authentication
+Patient --> UC_BookAppointment
+Patient --> UC_ViewVisitResult
+Patient --> UC_VisitHistory
+Patient --> UC_BookTestsTreatments
+@enduml

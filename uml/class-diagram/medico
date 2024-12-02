@@ -1,0 +1,27 @@
+@startuml
+package "Medico" {
+class BaseRepository {
+    - db_session
+    + __init__(db_session)
+}
+
+class MedicoRepository {
+    - db_session
+    + __init__(db_session)
+    + getMedici()
+    + getMediciBase()
+    + getMedicoById(id_medico)
+    + getMedicoByUtente(id_utente)
+    + getMediciByData()
+    + createMedicoFromUtente(id_utente)
+    + createMedico()
+    + createMedicoAndSostituto()
+    + updateMedico(id_medico)
+}
+
+
+}
+
+BaseRepository <|-- MedicoRepository
+
+@enduml

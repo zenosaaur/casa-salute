@@ -1,0 +1,22 @@
+@startuml
+package "MedicoSostituto" {
+class MedicoSostitutoRepository {
+    - db_session: Session
+    + __init__(db_session: Session)
+    + getMediciSostituti(): tuple
+    + getMediciSostitutiByMedico(id_medico: str): tuple
+    + getMedicoByMedicoSostituto(id_medicosostituto: str): tuple
+    + getMediciSostitutiByMedicoAndData(): tuple
+    + getMedicoSostituto(id_medicosostituzione: str): tuple
+    + createMedicoSostituto(): dict
+    + updateMedicoSostituto(id_medicosostituzione: str): dict
+}
+
+class BaseRepository {
+    - db_session
+    + __init__(db_session)
+}
+}
+
+BaseRepository <|-- MedicoSostitutoRepository
+@enduml

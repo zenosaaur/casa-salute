@@ -1,0 +1,47 @@
+@startuml
+left to right direction
+actor Segretaria
+
+rectangle CasaSalute {
+    rectangle "Gestione Autenticazione" {
+        usecase "Autenticazione" as UC_Authentication
+    }
+    rectangle "Gestione Visite" {
+        usecase "Aggiungere una visita" as UC_AddAppointment
+        usecase "Edit visita" as UC_EditAppointment
+        usecase "Visualizzazione esito visita" as UC_ViewVisitResult
+        usecase "Storico Visite" as UC_VisitHistory
+    }
+    rectangle "Gestione Prestazioni" {
+        usecase "Aggiungere una prestazione" as UC_AddPrestazione
+        usecase "Edit prestazione" as UC_EditPrestazione
+        usecase "Visualizzazione esito prestazione" as UC_ViewPrestazioneResult
+        usecase "Storico Prestazioni" as UC_VisitHistoryPrestazioni
+    }
+    rectangle "Gestione Prenotazioni" {
+        usecase "Prenotazione Prelievi/Medicazioni" as UC_BookTestsTreatments
+    }
+    rectangle "Gestione Personale" {
+        usecase "Edit Medico" as UC_EditMedico
+        usecase "Edit Assenze Medici" as UC_EditAssenzeMedico
+        usecase "Edit Infermiere" as UC_EditInfermiere
+        usecase "Edit sale infermieri" as UC_EditSalaInfermiere
+    }
+}
+
+Segretaria --> UC_Authentication
+Segretaria --> UC_ViewVisitResult
+Segretaria --> UC_VisitHistory
+Segretaria --> UC_VisitHistoryPrestazioni
+Segretaria --> UC_BookTestsTreatments
+
+Segretaria --> UC_EditAppointment
+Segretaria --> UC_AddAppointment
+Segretaria --> UC_EditPrestazione
+Segretaria --> UC_AddPrestazione
+Segretaria --> UC_ViewPrestazioneResult
+Segretaria --> UC_EditMedico
+Segretaria --> UC_EditInfermiere
+Segretaria --> UC_EditAssenzeMedico
+Segretaria --> UC_EditSalaInfermiere
+@enduml

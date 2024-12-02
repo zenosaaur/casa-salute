@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+actor Infermieri as Nurse
+
+rectangle CasaSalute {
+    usecase "Autenticazione" as UC_Authentication
+    usecase "Visualizzazione delle Prestazioni in programma" as UC_viewprestazioni
+    usecase "Inserire esito delle singolo prestazioni" as UC_modificaprestazioni
+}
+
+Nurse --> UC_Authentication
+Nurse --> UC_viewprestazioni
+Nurse --> UC_modificaprestazioni
+@enduml
+

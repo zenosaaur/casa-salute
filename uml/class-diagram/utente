@@ -1,0 +1,23 @@
+@startuml
+package "Utente" {
+
+    class BaseRepository {
+        - db_session
+        + __init__(db_session)
+    }
+
+    class UtenteRepository {
+        - db_session
+        + __init__(db_session)
+        + getUtenti(): (List<dict>, int)
+        + getUtenteById(id_utente: String): (dict, int)
+        + createUtente(): (dict, int)
+        + updateUtente(id_utente: String): (dict, int)
+        + login(): (dict, int)
+    }
+
+
+    BaseRepository <|-- UtenteRepository
+
+}
+@enduml

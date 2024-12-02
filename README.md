@@ -26,8 +26,3 @@ L'obiettivo principale del sistema è fornire una piattaforma versatile per supp
 - **Sviluppo Agile**: Incrementi settimanali per garantire una continua validazione e ottimizzazione del codice.
 - **Testing**: Test unitari, di integrazione e di sistema per garantire qualità e stabilità del software.
 
-## Installazione
-
-1. Clona il repository:
-   ```bash
-   git clone <URL del repository>
